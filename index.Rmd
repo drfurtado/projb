@@ -2,7 +2,7 @@
 title: "Module 6: Introduction to Probability"
 subtitle: "California State University - Northridge"
 author: "Ovande Furtado, Jr., Ph.D."
-date: "22 February, 2021"
+date: "1 March, 2021"
 output:
   xaringan::moon_reader:
     css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
