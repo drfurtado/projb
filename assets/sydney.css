@@ -67,15 +67,23 @@ To specify the margin of the first title h1
   display: none;
 }
 /* background colour classes */
-.sydney-blue {
-  background-color: #0148A4;
+.sydney-mgray {
+  background-color: #a9aba9;
+  color: white;
+}
+.sydney-sgreen {
+  background-color: #82cec9;
   color: white;
 }
 .sydney-yellow {
   background-color: #FFB800;
 }
-.sydney-red {
-  background-color: #e64626;
+.sydney-csun-red {
+  background-color: #D22030;
+  color: white;
+}
+.sydney-2nd-red {
+  background-color: #e64b36;
   color: white;
 }
 /* segue */
@@ -356,11 +364,11 @@ slides > slide {
 */
  
 .title-slide {
-  background-image: url(USydLogo-black.svg);
+  background-image: url(CSUN_LOGO_HORIZONTAL_186.svg);
   /* background-image: url(https://sydney.edu.au/etc/designs/corporate-commons/bower_components/corporate-frontend/dist/assets/img/USydLogo.svg); */
-  background-position: 10% 90%;
-  background-size: 160px;
-  background-color: #e64626;
+  background-position: -10% 130%;
+  background-size: 600px;
+  background-color: #bec6c3;
   text-align:left;
   vertical-align: top;
   text-shadow: none;
