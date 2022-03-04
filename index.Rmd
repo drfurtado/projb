@@ -1049,7 +1049,6 @@ If you have a long list of references, and want to split them over multiple slid
 
 ---
 
-## Embedding tweets
 .pull-left[
 1. Get the link to embed the tweet from twitter.
 
