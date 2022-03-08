@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Module 7: Estimating unknown quantities from a sample</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ovande Furtado, Jr., Ph.D." />
+    <meta name="date" content="2022-03-05" />
+    <script src="ch07-intro-inferential-stats_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="ch07-intro-inferential-stats_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/sydney.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Module 7: Estimating unknown quantities from a sample
+## California State University - Northridge
+### Ovande Furtado, Jr., Ph.D.
+### March 5, 2022
+
+---
+
+
+
+
+
+
+
+---
+# Samples, populations and sampling
+----
+- Sampling theory plays role in specifying the assumptions upon which your statistical inferences rely
+-  We’re drawing inferences from (the sample) and what it is that we’re drawing inferences about (the population).
+- We can’t possibly get every person in the world to do our experiment 
+
+
+---
+# Defining a population
+----
+.content-box-blue[
+It refers to the set of all possible people, or all possible observations, that you want to draw conclusions about and is generally much bigger than the sample..fn[1]
+]
+.pull-left[
+- More abstract than the sample
+ - Not always clear to the researcher what the population is
+- To circumvent this issue, researchers often define a target population and a study population
+ - target pop. --&gt; see definition above
+ - study pop.  --&gt; a subset of the target population from which the sample is actually selected.fn[2]
+] 
+.pull-right[
+Example
+
+- Survey undergraduate students on their perception regarding physical activity
+- target pop. --&gt; undergraduate students all over the world
+- study pop.  --&gt; undergraduate students at CSUN
+]
+
+.footnote[
+[1] Navarro and Foxcroft (2019)
+
+[2] Hu, S. (2014). Study Population. Encyclopedia of Quality of Life and Well-Being Research. Springer. doi: 10.1007/978-94-007-0753-5
+]
+
+---
+# Simple random samples - with no replacement
+----
+.content-box-blue[
+A procedure in which every member of the population has the same chance of being selected is called a simple random sample. 
+]
+
+.pull-left[
+&lt;img height="300" width="500" src="https://lsj.readthedocs.io/en/latest/_images/lsj_srs1.svg"&gt;
+]
+.pull-right[
+The fact that we did not put the chips back in the bag after pulling them out means that you can’t observe the same thing twice, and in such cases the observations are said to have been sampled without replacement.
+]
+
+---
+# Simple random samples - biased with no replacement
+----
+.content-box-blue[
+A procedure in which every member of the population has the same chance of being selected is called a simple random sample. 
+]
+
+.pull-left[
+&lt;img height="300" width="500" src="https://lsj.readthedocs.io/en/latest/_images/lsj_brs.svg"&gt;
+]
+.pull-right[
+Only black chips were picked
+
+If you know that the sampling scheme is biased to select only black chips then a sample that consists of only black chips doesn’t tell you very much about the population!
+
+.content-box-red[
+.font80[Example: The study population is **undergraduate students** at CSUN, but you decided to collect data (interview students) at the Rec Center only.]
+]
+]
+
+---
+# Simple random samples - with replacement
+----
+.content-box-blue[
+A procedure in which every member of the population has the same chance of being selected is called a simple random sample. 
+]
+
+.pull-left[
+&lt;img height="300" width="500" src="https://lsj.readthedocs.io/en/latest/_images/lsj_srs2.svg"&gt;
+]
+.pull-right[
+Data sets generated in this way are still simple random samples, but because we put the chips back in the bag immediately after drawing them it is referred to as a sample with replacement..fn[1] 
+]
+
+.footnote[
+[1] Experiments in kinesiology tend to be sampling without replacement, because the same person is not allowed to participate in the experiment twice.
+]
+
+---
+# Sampling types
+----
+
+.content-box-blue[
+A full discussion on the types samples is beyond the scope of this presentation, but you should now that:]
+
+"The generalizability of clinical research findings is based on multiple factors related to the internal and external validity of the research methods. The main methodological issue that influences the generalizability of clinical research findings is the sampling method.".fn[1]
+
+- Probability sampling
+  - simple random, stratified random, systematic, clustered random
+- Non-probability sampling
+  - convenience, judgmental, snow-ball
+  
+.font80[.content-box-red[
+Refer to Elfil and Negida (2017).fn[1] for a full review. 
+]
+]
+
+.footnote[
+[1] Elfil, M., &amp; Negida, A. (2017). Sampling methods in Clinical Research; an Educational Review. Emergency, 5(1). Retrieved from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5325924
+]
+
+---
+# What if I don't have a random sample?
+----
+
+- it can matter if your data are not a simple random sample
+- there are statistical techniques that you can use to adjust for the biases you’ve introduced (not covered in this book!)
+- Convenience sample - biased
+  - A bias in your sampling method is only a problem if it causes you to draw the wrong conclusions.
+
+---
+# The Central Limit Theorem (CLT)
+----
+&gt; In probability theory, the central limit theorem (CLT) establishes that, in many situations, when independent random variables are summed up, their properly normalized sum tends toward a normal distribution (informally a bell curve) even if the original variables themselves are not normally distributed. .fn[1]
+
+&lt;br&gt;
+
+The CLT states that as N becomes large, the distribution of the **sample means** becomes closer and closer to a normal distribution with mean μ and diminishing standard deviation.
+
+\begin{align} \frac{\overline{X}_n -\mu}{\sigma/\sqrt{n}}\longrightarrow Z \sim N(0,1) \end{align}
+
+.content-box-red[
+[...] the result above is independent of the underlying distribution of the random variable X.fn[2].
+]
+
+.footnote[
+[1] Contributors to Wikimedia projects. (2022, February 23). Central limit theorem - Wikipedia. Retrieved from https://en.wikipedia.org/w/index.php?title=Central_limit_theorem&amp;oldid=1073557211
+
+[2] Chapter 8 Sampling Distributions - Statistics. (2022, March 07). Retrieved from http://statistics.wikidot.com/ch8
+]
+
+---
+# The Central Limit Theorem (CLT) 
+----
+.pull-left[
+The mean remains unchanged and as n increases, the standard deviation of of the sample means `\(\overline{X}_n\)` diminishes as 1/ `\(\sqrt{n}\)`
+
+- this means that the weight gets concentrated on the center around the mean
+
+.content-box-red[
+if the blue line represents the case of the original sample size n, the red is then 2n and the yellow is when the sample is 4 times its original size.]
+
+]
+.pull.right[
+&lt;img height="500" width="500" src="http://statistics.wikidot.com/local--resized-images/ch8/sampling_distros.png/medium.jpg"&gt;
+]
+
+---
+# The Central Limit Theorem (CLT) 
+----
+We can see the CLT in action by playing with an online Java applet 
+
+- Visit the this [link](https://onlinestatbook.com/stat_sim/sampling_dist/index.html) online
+- Click on _Begin_ - top left of the site to get the Java applet running 
+- Set the distribution on the top to be uniform
+- in the 3rd and 4th panel the mean and N=5 and N=20 respectively
+- Check **Fit normal** on both panels
+- Click on animate in the second panel once or twice, then on the number of repetitions 5, 10000, and 100000 
+
+---
+# The Central Limit Theorem (CLT) 
+----
+.pull-left[
+.content-box-red[
+Observe how the mean becomes closer and closer to a normal distribution. 
+
+Also notice that for n=5, the standard deviation is about twice as large than for n=20, as the number of repetitions increases..fn[1] 
+
+No matter which distribution.fn[2] we take, if we draw n random (large enough) samples, the mean of the samples will be normally distributed.
+]
+]
+.pull-right[
+&lt;img src="https://www.dropbox.com/s/kfbvt25adgy8tfm/applet1.png?dl=1"&gt;
+]
+
+
+.footnote[
+[1] Chapter 8 Sampling Distributions - Statistics. (2022, March 07). Retrieved from http://statistics.wikidot.com/ch8
+
+[2] Even not normal (i.e., badly skewed) - give it a try with the java applet introduced in the previous slide.
+]
+
+---
+# The Central Limit Theorem (CLT) 
+----
+
+On the basis of the sample means distributions (previous slide), it seems like we have evidence for all of the following claims about the sampling distribution of the mean.
+
+- The mean of the sampling distribution is the same as the mean of the population
+- The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases
+- The shape of the sampling distribution becomes normal as the sample size increases
+
+The statements above are true and the CLT proves it.
+
+---
+# Estimating the population mean
+----
+
+
+
+
+
+---
+# The Central Limit Theorem (CLT) 
+----
+As per the CLT, 
+- if the population distribution has mean µ and standard deviation σ, then the **sampling distribution** of the mean also has mean µ and the **standard error of the mean** is
+
+&lt;center&gt;
+`\(\mbox{SEM} = \frac{\sigma}{ \sqrt{N}}\)`
+&lt;/center&gt;
+
+Because we divide the population standard deviation σ by the square root of the sample size N, the SEM gets smaller as the sample size increases. It also tells us that the shape of the sampling distribution becomes normal.
+
+---
+# Predicting populaiton parameters
+----
+- Definitions
+ - Value of Statistic: characteristics related to a sample
+ - Value of Parameter: characteristics related to a population
+- Measuring an entire population is rarely possible.
+- Researchers take a sample from the population and assume that it is representative (must be random).
+- Inferential statistics = the process of estimating population parameters based on sample statistics.
+
+---
+# Sampling error
+----
+- Regardless of how the sample was collected (target or study population), sampling error will occur
+- Sampling error = amount of error in the estimate of a population parameter that is based on a sample statistic.
+- Even if a sample is randomly drawn, the population mean would still unknown
+- Never know the true population mean since not all members are measured
+ - Need a way to determine how accurate the sample mean is and what are the odds that it is deviant from the population mean by a given amount
+
+---
+# Estimating Sampling Error
+----
+
+- Standard Error: index of how variable the sample statistic is when multiple samples of the same size are drawn from the same population.​
+- Use ONE sample to estimate the STANDARD ERROR​
+- If I know the estimated standard error, I can estimate how much difference there is between my sample statistic and the population parameter (i.e., Mean, SD, Corr. Coefficient)​
+
+---
+# Estimating Sampling Error
+----
+
+- Standard error is a general term, _SE&lt;sub&gt;M_ is specific and applies to the sample mean
+
+.font200[
+`\(\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}\)`
+]
+
+- A numeric value that indicates the amount of error that may occur when a random sample mean is used as a predictor of a population mean​
+- Population mean is assumed to exist between some set limits and the chance of this assumption being correct is stated as odds such as
+ - 90 to10 (_p_ = .10); 95 to 5 (_p_ = .05); 99 to 1 (_p_ = .01)​
+
+---
+# Estimating Sampling Error ( `\(\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}\)` )
+----
+
+.pull-left[
+
+Example: Sit-and-reach for HS girls 
+
+- Estimate where the mean of the population lies (within certain limits)
+
+ - `\(n\)` = 50; `\(\bar{x}\)` = 35 cm; `\(s\)` = 10 cm
+
+.font200[
+`\(\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}\)`
+]
+
+]
+.pull-right[
+
+where: 
+
+`\(\sigma_{\bar{x}}\)` refers standard deviation of the sample means indicated by `\(\bar{x}\)`.
+
+`\(n\)` refers to the sample size.
+
+`\(s\)` refers to the sample standard deviation.
+
+Working this out we have: 
+
+.font150[
+`\(\sigma_{\bar{x}}\)` = 1.4 cm.fn[1]
+]
+]
+
+.footnote[
+[1] Can be interpreted as any other standard deviation on a normal curve
+]
+
+---
+# Estimating Sampling Error ( `\(\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}\)` )
+----
+Making inference using confidence intervals (CI)
+
+.font200[
+`\(\mu\)` = `\(\bar{x} \pm 1\frac{s}{\sqrt{n}}\)`
+]
+
+where:
+
+`\(\bar{x}\)` refers for the sample mean.
+
+`\(s\)` refers to the sample standard deviation.
+
+`\(n\)` refers to the sample size. 
+
+---
+class: sydney-sgreen
+background-image: url(assets/CSUN_LOGO_HORIZONTAL_186.svg)
+background-size: 460px
+background-position: 5% 95%
+
+# Thanks!
+
+.pull-right[.pull-down[
+
+&lt;a href="mailto:ovandef@csun.edu"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z"&gt;&lt;/path&gt;&lt;/svg&gt; ovandef@csun.edu]
+&lt;/a&gt;
+
+&lt;a href="http://twitter.com/ofurtado"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @ofurtado]
+&lt;/a&gt;
+
+&lt;a href="http://github.com/drfurtado"&gt;
+.white[&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; @drfurtado]
+&lt;/a&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="assets/remark-zoom.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
