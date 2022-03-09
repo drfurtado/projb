@@ -32,8 +32,57 @@ myBib <- ReadBib("myBib.bib", check = FALSE)
 ```
 
 
-```{r include=FALSE}
-icons::download_fontawesome()
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+```{r xaringan-editable, echo=FALSE}
+xaringanExtra::use_editable(expires = 1)
+```
+```{r style-share-again, echo=FALSE}
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+```
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons()
+```
+
+```{r}
+xaringanExtra::use_webcam()
+```
+
+```{r xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://cdn.freebiesupply.com/logos/large/2x/cal-state-northridge-matadors-logo-black-and-white.png"
+)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#0051BA", location = "top")
+```
+
+```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_freezeframe()
 ```
 
 ---
@@ -211,7 +260,7 @@ We can see the CLT in action by playing with an online Java applet
 .content-box-red[
 Observe how the mean becomes closer and closer to a normal distribution. 
 
-Also notice that for n=5, the standard deviation is about twice as large than for n=20, as the number of repetitions increases..fn[1] 
+Also notice that for $n$ = 5, the standard deviation is about twice as large than for $n$ = 20, as the number of repetitions increases..fn[1] 
 
 No matter which distribution.fn[2] we take, if we draw n random (large enough) samples, the mean of the samples will be normally distributed.
 ]
@@ -243,13 +292,19 @@ The statements above are true and the CLT proves it.
 # The Central Limit Theorem (CLT) 
 ----
 As per the CLT, 
-- if the population distribution has mean µ and standard deviation σ, then the **sampling distribution** of the mean also has mean µ and the **standard error of the mean** is
 
-<center>
-$\mbox{SEM} = \frac{\sigma}{ \sqrt{N}}$
-</center>
+.content-box-gray[
+if the population distribution has mean µ and standard deviation σ, then the **sampling distribution** of the mean also has mean µ and the **standard error of the mean** is
+]
 
-Because we divide the population standard deviation σ by the square root of the sample size N, the SEM gets smaller as the sample size increases. It also tells us that the shape of the sampling distribution becomes normal.
+$$\sigma_{\bar{X}} = \frac{s}{\sqrt{N}}$$
+
+.content-box-blue[
+Because we divide the population standard deviation ( σ ) by the square root of the sample size ( $n$ ), the _SE<sub>M_ gets smaller as the sample size increases. 
+
+It also tells us that the shape of the sampling distribution becomes normal.
+]
+
 
 ---
 # Predicting populaiton parameters
@@ -274,23 +329,27 @@ Because we divide the population standard deviation σ by the square root of the
 # Estimating Sampling Error
 ----
 
-- Standard Error: index of how variable the sample statistic is when multiple samples of the same size are drawn from the same population.​
-- Use ONE sample to estimate the STANDARD ERROR​
-- If I know the estimated standard error, I can estimate how much difference there is between my sample statistic and the population parameter (i.e., Mean, SD, Corr. Coefficient)​
+- Standard Error: index of how variable the sample statistic is when multiple samples of the same size are drawn from the same population.
+- Use ONE sample to estimate the STANDARD ERROR
+- If I know the estimated standard error, I can estimate how much difference there is between my sample statistic and the population parameter (i.e., Mean, SD, Corr. Coefficient)
 
 ---
 # Estimating Sampling Error
 ----
 
-- Standard error is a general term, _SE<sub>M_ is specific and applies to the sample mean
+The standard error is a general term, _SE<sub>M_ is **specific** and applies to the sample mean ( $x$ )
 
-.font200[
-$\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$
+.font150[
+$$\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$$
 ]
 
-- A numeric value that indicates the amount of error that may occur when a random sample mean is used as a predictor of a population mean​
-- Population mean is assumed to exist between some set limits and the chance of this assumption being correct is stated as odds such as
- - 90 to10 (_p_ = .10); 95 to 5 (_p_ = .05); 99 to 1 (_p_ = .01)​
+The _SE<sub>M_ is: 
+
+- a numeric value that indicates the amount of error that may occur when a random sample mean is used as a predictor of a population mean
+
+The **population mean** ( $\mu$ ) is assumed to exist between some set limits and the chance of this assumption being correct is stated as odds such as:
+
+90 to10 (_p_ = .10); 95 to 5 (_p_ = .05); 99 to 1 (_p_ = .01)
 
 ---
 # Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
@@ -300,9 +359,9 @@ $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$
 
 Example: Sit-and-reach for HS girls 
 
-- Estimate where the mean of the population lies (within certain limits)
+Estimate where the mean of the population lies (within certain limits)
 
- - $n$ = 50; $\bar{x}$ = 35 cm; $s$ = 10 cm
+Desc. Stats:  $n$ = 50; $\bar{x}$ = 35 cm; $s$ = 10 cm
 
 .font200[
 $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$
@@ -313,7 +372,7 @@ $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$
 
 where: 
 
-$\sigma_{\bar{x}}$ refers standard deviation of the sample means indicated by $\bar{x}$.
+$\sigma_{\bar{x}}$ refers standard deviation of the sample means.fn[1] indicated by $\bar{x}$.
 
 $n$ refers to the sample size.
 
@@ -322,17 +381,20 @@ $s$ refers to the sample standard deviation.
 Working this out we have: 
 
 .font150[
-$\sigma_{\bar{x}}$ = 1.4 cm.fn[1]
+$\sigma_{\bar{x}}$ = 1.4 cm.fn[2]
 ]
 ]
 
 .footnote[
-[1] Can be interpreted as any other standard deviation on a normal curve
+[1] Recall that it is impossible to collect data on 10000 people. So we try to estimate the average of the sample means.
+
+[2] Can be interpreted as any other standard deviation on a normal curve
 ]
 
 ---
 # Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
 ----
+.pull-left[
 Making inference using confidence intervals (CI)
 
 .font200[
@@ -346,13 +408,123 @@ $\bar{x}$ refers for the sample mean.
 $s$ refers to the sample standard deviation.
 
 $n$ refers to the sample size. 
+]
+.pull-right[
 
-continue here
+Solution: 35 ± (1 x 1.4)
 
-https://mycsun.app.box.com/integrations/officeonline/openOfficeOnline?fileId=539258484126&sharedAccessCode=
+**33.6** and **36.4**  or **33.6** ≤ µ ≤ **36.4** (limits)
 
+- Accurate at the 68% level of confidence (LOC)
+ - Because we used 1Z (SEM)
+- 68% chance being correct
+- 32% change being incorrect (probability of error - _p_ < .32)
+]
+]
+---
+# Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
+----
+<br>
+.pull-left[
+<center>
+<img height="400" width="500" src="https://www.dropbox.com/s/27xxu7d9q6gop94/ncurve-percentage.png?dl=1">
+</center>
+]
+.pull-right[
+.content-box-red[
+Note that trying to be accurate at the 68% level of confidence (LOC) is too risky. 
 
+The 32% of being incorrect is not acceptable when making inferences about population parameters; i.e., $\mu$, $\sigma$, etc.
+]
+]
 
+---
+# Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
+----
+.pull-left[
+Making inference using confidence intervals (CI)
+
+.font200[
+$\mu$ = $\bar{x} \pm 1\frac{s}{\sqrt{n}}$
+]
+.content-box-red[
+Now, substitute **1** by **1.96**. By doing so, you accurately represent the 95% LOC or _p_ = 0.05
+]
+
+]
+.pull-right[
+
+Solution: 35 ± (**1.96** x 1.4)
+
+**33.2** and **37.7**  or **32.2** ≤ µ ≤ **37.7** (limits)
+
+- Range of values: Confidence Interval (CI)
+ - The 68% CI is about 33.6 to 36.4
+ - The 95% CI is about 32.3 to 37.7 cm
+
+- If 99% LOC (p= .01)
+ - use Z ± 2.58 (CI = 31.4 to 38.6 cm)
+]
+
+---
+# Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
+----
+.pull-left[
+    
+.content-box-blue[
+The more precise (narrow) the estimate, the lower the odds of being correct
+
+As the estimate become more general (broad), the odds of being correct improve
+]
+
+]
+.pull-right[
+
+Solution: 35 ± (**1.96** x 1.4)
+
+**33.2** and **37.7**  or **32.2** ≤ µ ≤ **37.7** (limits)
+
+- Range of values: Confidence Interval (CI)
+ - The 68% CI is about 33.6 to 36.4
+ - The 95% CI is about 32.3 to 37.7 cm
+
+- If 99% LOC (p= .01)
+ - use Z ± 2.58 (CI = 31.4 to 38.6 cm)
+]
+
+---
+# Estimating Sampling Error ( $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$ )
+----
+
+**Your Turn!!!**
+
+You goal is to find the average height of 2nd graders in a school district ( $\mu$ ). Random selection was used and data were collected for a sample comprised of 60 participants:
+
+.font130[
+$\bar{x}$= 100 cm; $s$= 10 cm; $n$= 60
+]
+
+Using the information above, estimate the population mean at the 95% LOC, _p_ = 0.05
+
+???
+
+Conclusion:
+
+- The teacher concluded with a 95% confidence that the mean height of all the 2nd grade children in the district was **between 97.5 and 102.5 cm**
+- 5% chance (p= .05 exists that this conclusion is incorrect)
+
+---
+# LOC, Probability Error, and Confidence Intervals
+----
+## Summary
+
+- Level of Confidence (LOC): percentage figure that establishes the probability that a statement is correct
+ - Derived from $s$ (e.g. +/-1 $s$ = 68%)
+- Probability of Error = percentage figure that establishes the probability that a statement is incorrect
+ - If 68% correct then 32% incorrect (_p_ < .32)
+ - The area under the normal curve representing error is called alpha (α) 
+ - 95% LOC or _p_ < .05 is more common in Kinesiology research
+- Confidence Interval (CI): the range of values associated with LOC
 
 ---
 class: sydney-sgreen
