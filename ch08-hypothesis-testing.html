@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Module : Hypothesis Testing</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ovande Furtado, Jr., Ph.D." />
+    <meta name="date" content="2022-03-11" />
+    <script src="ch08-hypothesis-testing_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="ch08-hypothesis-testing_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="ch08-hypothesis-testing_files/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="ch08-hypothesis-testing_files/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="ch08-hypothesis-testing_files/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <link href="ch08-hypothesis-testing_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/tile-view-0.2.6/tile-view.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xa8586d32fb64010b29948c51db1a9e7","expires":1}</script>
+    <script src="ch08-hypothesis-testing_files/himalaya-1.1.0/himalaya.js"></script>
+    <link href="ch08-hypothesis-testing_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/editable-0.2.6/editable.js"></script>
+    <link href="ch08-hypothesis-testing_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/panelset-0.2.6/panelset.js"></script>
+    <link href="ch08-hypothesis-testing_files/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="ch08-hypothesis-testing_files/mark.js-8.11.1/mark.min.js"></script>
+    <link href="ch08-hypothesis-testing_files/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <script src="ch08-hypothesis-testing_files/fabric-4.3.1/fabric.min.js"></script>
+    <link href="ch08-hypothesis-testing_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="ch08-hypothesis-testing_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="ch08-hypothesis-testing_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <script src="ch08-hypothesis-testing_files/freezeframe-5.0.2/freezeframe.min.js"></script>
+    <script src="ch08-hypothesis-testing_files/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/sydney.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Module : Hypothesis Testing
+## California State University - Northridge
+### Ovande Furtado, Jr., Ph.D.
+### March 11, 2022
+
+---
+
+
+
+
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-facebook: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style>
+
+
+
+
+
+```r
+xaringanExtra::use_webcam()
+```
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(https://cdn.freebiesupply.com/logos/large/2x/cal-state-northridge-matadors-logo-black-and-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #0051BA;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+---
+# Example
+----
+
+Research question: Do Kin grad student at CSUN perform differently from the entire population when comes to reaction time? 
+
+Information to consider:
+- Dependent variable: reaction time scores.fn[1]
+ - continuous (ratio)
+- Independent variable: none
+
+Data set
+
+We will use the data set provided [here](https://drfurtado.github.io/isk-ancillary/datasets.html).
+
+.footnote[
+[1] online test - [Human Benchmark website](https://humanbenchmark.com/tests/reactiontime)
+] 
+
+---
+# Short Review
+----
+- Inferential statistics: the process of estimating population parameters based on sample statistics
+ - We rarely have access to the entire population, and even if we did, it would likely be impractical to test them all
+ - We take a representative sample and estimate the parameter of interest based on the sample statistic.
+- Parameter—a characteristic of a population 
+- Statistic—an estimate of a parameter based on sample value
+
+---
+# Short Review, cont.
+----
+
+- Sampling error—the amount of error in the estimate of a population parameter that is based on a sample statistic
+- Standard error of the mean (SEM)
+ - It is an estimate of the amount of error when a sample mean is used to estimate the population mean.
+ - The population mean cannot truly be known.
+ - We do know the sample mean and an estimate of the error we should expect.
+
+---
+# Short Review, cont.
+----
+Assume the following:
+
+- The population = 175 lb (79 kg); SD = 25 lb (11 kg).
+ - ~ 68% of all scores between 150 and 200 lb (68 and 91 kg)
+ - ~ 95% of all scores between 125 and 225 lb (57 and 102 kg)
+
+--
+
+- Imagine you have access to all scores in the population.
+- At random, pick 50 scores and calculate the mean.
+- Return those 50 scores to the pot and repeat multiple times (i.e., 8000). 
+- Create a frequency distribution of all those sample means (sampling distribution of the mean).
+
+--
+
+- Distribution would be normal (even if the samples are not normal) due to the central limit theorem.
+- The mean of the sample means is equal to the population mean.
+- The standard deviation of the sample means is called the standard error of the mean.
+
+---
+# Short Review, cont. _SE&lt;sub&gt;M_&lt;/sub&gt;
+----
+
+.pull-left[
+
+![](ch08-hypothesis-testing_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+.pull-right[
+Again, assume that:
+- Population mean (μ) = 175 lb (79 kg)
+- Population SD (σ) = 25 lb (11 kg)
+- If we take 8000 sample means
+ - Mean of these sample means will be about 175 lb (79 kg)
+ - SD of sample means = 1.6 kg which is the standard error of mean
+]
+
+---
+# Short Review, cont. _SE&lt;sub&gt;M_&lt;/sub&gt;
+----
+- We cannot sample the population multiple times, only once.
+- The solution is to estimate the _SE&lt;sub&gt;M_&lt;/sub&gt;, and
+
+`$$\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$$`
+- Use a Confidence Interval (CI) combined with a certain Level of Confidence (LOC)
+ - CI: the range of values associated with a level of confidence
+ - LOC: % that establishes the probability that a statement is correct 
+
+---
+# Statistical Hypothesis Testing
+----
+.content-box-blue[
+Statistical hypothesis testing—create two mutually exclusive and exhaustive mathematical statements about the outcome of the analysis
+]
+.pull-left[
+- Statistical hypotheses:
+ - `\(H_0\)` - the null hypothesis
+ - `\(H_a\)` — the alternate hypothesis
+ - Mutually exclusive — only one of the two can be true
+ - Exhaustive — no other option can exist
+]
+.pull-right[
+We hypothesize that males and females differ on reaction time scores.
+
+When `\(H_a\)` is a non-directional hypothesis 
+
+$$H_0: \mu _m = \mu _f \mbox{ vs. } H_1: \bar{x} _m \ne \bar{x} _f $$
+Whem `\(H_1\)` is a directional hypothesis 
+
+`$$H_0: \mu _m \leq \mu _f \mbox{ vs. } H_1: \bar{x} _m &gt; \bar{x} _f$$`
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- The interest is typically on `\(H_a\)`, but the `\(H_0\)` is the one being tested; .font140[***always!!!***]
+ - We either **reject** or **fail to reject**.fn[1] `\(H_0\)`
+
+- Recall the idea of the sampling distribution of the mean. Now extend this idea to mean differences. 
+ - Assume we have the reaction time scores of all males and females. Also assume that the `\(H_0\)` is TRUE.
+ - Take ONE sample of males and females and calculate the mean difference
+  - plot the value in a distribution (sample mean differences)
+  - now continue doing this for until you collected 10.000 sample mean difference scores.
+
+.footnote[
+[1] We never "**accept** `\(H_0\)`", since the actual state of the `\(H_O\)` is never known.
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- If `\(H_0\)` is true, then the mean difference ought to be ~0, but due to sampling error, the mean difference is unlikely to be exactly 0. 
+- Repeat over and over to create a sampling distribution of mean differences.
+- The **mean of the mean differences** should be zero (since `\(H_0\)` is true).
+- The standard deviation of the distribution of mean differences is called the **standard error of mean differences**.
+
+.content-box-red[
+WAIT!!! I do not have access to the entire population...
+]
+.content-box-blue[
+TRUE, see next slide....
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- Indeed, we do not have access to the entire population
+- You take one sample from each group, calculate the mean difference, **and estimate the probability (_p_) that you could have gotten a mean difference this big or bigger if `\(H_0\)` is true.**
+
+.content-box-red[
+- _p_ (data│ `\(H_0\)` ) == probability of the data, given `\(H_0\)`.
+- If the _p_-value is small, we get suspicious about the truth of the null hypothesis. If the _p_-value is small enough, we get so suspicious that we reject the null hypothesis and accept the alternate hypothesis.
+- How small is small? We set the criteria for small by setting `\(\alpha\)`. The typical `\(\alpha\)` is 0.05. This is equivalent to a 95% level of confidence (95% LOC). 
+]
+
+---
+# Type I and Type II Error
+----
+- Decision about `\(H_0\)` based on probabilities; may be wrong
+- `\(\alpha\)` `\(\Rightarrow\)` probability of committing a type I error (set by researcher)
+- `\(\beta\)` `\(\Rightarrow\)` probability of committing a type II error
+- Power `\(\Rightarrow\)` the probability of rejecting `\(H_0\)` when `\(H_0\)` is false
+ - Power is equal to 1 − `\(\beta\)`.
+ - Power is increased by decreasing noise in the data and increasing the sample size.
+
+| | `\(H_0\)` True | `\(H_0\)` false|
+|--|--|--|
+|Fail to reject|Correct decision|Type II error ( `\(\beta\)` )|
+|Reject `\(H_0\)` | Type I error ( `\(\alpha\)` ) |Correct decision|
+
+---
+# Still, a theoretical example
+----
+.pull-left[
+.font80[- Center - sampling distribution of `\(\bar{x}\)` ( `\(H_0: \mu = 100\)` )
+ - This is the value being tested
+- Distributions on either side - distributions that would be **true** if `\(H_0\)` is **false** (alternative hypothesis).fn[1]
+- To test a hypothesis, we take a sample from the population and determine if it could have come from the hypothesized distribution with an acceptable level of significance ( `\(\alpha\)` ).fn[2] value - shaded areas in each tail of the `\(H_0\)`
+- If the sample mean marked as `\(\bar{x_1}\)` is in the tail of the distribution of `\(H_0\)`, we conclude that the probability that it could have come from the `\(H_0\)` distribution is less than alpha - ***we reject `\(H_0\)`***
+]
+]
+.pull-right[
+&lt;img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b"&gt;
+.font80[Figure representing a sampling distribution of `\(\bar{x}\)` ( `\(H_0: \mu = 100\)` ) and two alternative distributions that would be true if `\(H_0\)` is false..fn[3]
+]
+]
+
+.footnote[
+[1]. We do not know which is true, and will never know. There are, in fact, an infinite number of distributions from which the data could have been drawn if Ha is true, but only two of them are on the illustration representing all of the others.
+
+[2]. Each area is actually α/2 because the distribution is symmetrical and the alternative hypothesis allows for the possibility for the value to be either greater than or less than the hypothesized value--called a two-tailed test). 
+
+[3]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# Still, a theoretical example
+----
+.pull-left[
+.font80[- The truth may be that this `\(\bar{x_1}\)` did come from the `\(H_0\)` distribution, but from out in the tail. If this is so, then we have falsely rejected a true null hypothesis and have made a Type I error. 
+- What statistics has done is provide an estimate about what we know, and what we control, and that is the probability of us being wrong, α.
+- We can also see in the figure that the sample mean could be really from an `\(H_a\)` distribution, but within the boundary set by the alpha level. 
+- Such a case is marked as `\(\bar{x_2}\)`. There is a probability that `\(\bar{x_2}\)` actually came from `\(H_a\)` but shows up in the range of `\(H_0\)` between the two tails. This probability is the `\(\beta\)` error, the probability of **accepting a false null.**
+]
+]
+.pull-right[
+&lt;img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b"&gt;
+.font80[Figure representing a sampling distribution of `\(\bar{x}\)` ( `\(H_0: \mu = 100\)` ) and two alternative distributions that would be true if `\(H_0\)` is false..fn[1]
+.content-box-red[
+We will not reject a null hypothesis unless there is a greater than 90, or 95, or even 99 percent probability that the null is false.]
+]
+]
+
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+]
+
+???
+Our problem is that we can only set the alpha error because there are an infinite number of alternative distributions from which the mean could have come that are not equal to H0. As a result, the statistician places the burden of proof on the alternative hypothesis. That is, we will not reject a null hypothesis unless there is a greater than 90, or 95, or even 99 percent probability that the null is false: the burden of proof lies with the alternative hypothesis. This is why we called this the tyranny of the status quo earlier.
+
+---
+# Finally, an example!
+----
+.pull-left[
+.font80[
+Suppose the null hypothesis, `\(H_0\)`, is: Frank's rock climbing equipment is safe..fn[1]
+- Type I error: Frank thinks that his rock climbing equipment may not be safe when, in fact, it really is safe.
+- Type II error: Frank thinks that his rock climbing equipment may be safe when, in fact, it is not safe.
+- Notice that, in this case, the error with the greater consequence is the Type II error. (If Frank thinks his rock climbing equipment is safe, he will go ahead and use it.)
+- This is a situation described as "accepting a false null".
+]
+]
+.pull-right[
+&lt;img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b"&gt;
+
+]
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# Overview
+----
+
+- Set α, say at .05 (95% LOC).
+ - Accept a 5% risk of making a type I error, if `\(H_0\)` is true
+- Perform analyses and calculate _p_.
+ - _p_ `\(\Rightarrow\)` probability of the getting data that you did, if `\(H_0\)` is true 
+ - p (data │ `\(H_0\)`)
+- If p ≤ `\(\alpha\)`, reject `\(H_0\)`.
+- If we reject `\(H_0\)`, **we say the result is statistically significant.**
+ - Not necessarily important or meaningful.fn[1]
+ 
+.footnote[
+[1] Not all significant tests are meaningful - We will address this soon.
+]
+
+---
+# Two ore more pulations
+----
+
+.pull-left[
+&lt;img height="500px" src="https://openstax.org/apps/archive/20220118.185250/resources/909bc0c17c17166676fde5a8b1402f46f72982e3"&gt;
+]
+.pull-left[
+- Previous example was for ONE sample
+- Do these two samples come from the same population distribution?
+- The `\(H_0\)` being tested now is mean differences
+
+$$H_0: \mu _1 - \mu _2 = 0 \mbox{ vs. } \mu _1 - \mu _2 \ne 0 $$
+]
+
+???
+Pictured are two distributions of data, X1 and X2, with unknown means and standard deviations. The second panel shows the sampling distribution of the newly created random variable (𝑋−1−𝑋−2). 
+
+This distribution is the theoretical distribution of many sample means from population 1 minus sample means from population 2. The Central Limit Theorem tells us that this theoretical sampling distribution of differences in sample means is normally distributed, regardless of the distribution of the actual population data shown in the top panel. 
+
+Because the sampling distribution is normally distributed, we can develop a standardizing formula and calculate probabilities from the standard normal distribution in the bottom panel, the Z distribution.
+
+]
+
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# One and Two-tailed tests
+----
+.pull-left[
+**Two-tailed test:** We state `\(H_0\)` such that difference between means = 0. Or that the `\(\mu_1\)` is equal to the `\(\mu_2\)`. 
+ - `\(H_0: \mu_1 - \mu_2 = 0\)` vs. `\(H_a: \bar{x} _1 - \bar{x} _2 \ne 0\)`
+ - or `\(H_0: \mu_1 = \mu_2\)` vs. `\(H_a: \bar{x} _1 \ne \bar{x} _2\)`
+ - Half of rejection area divided between the two tails of the sampling distribution
+]
+.pull-right[
+![](ch08-hypothesis-testing_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+# One and Two-tailed tests
+----
+.pull-left[
+- **One-tailed test:** We hypothesize that one condition (or group mean) is larger than another.
+  - `\(H_0: \mu_1 \leq \mu_2\)` vs. `\(H_a: \bar{x} _1 &gt; \bar{x} _2\)`
+  - All rejection area in one tail of the sampling distribution
+]
+.pull-right[
+![](ch08-hypothesis-testing_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+# Confidence Levels
+----
+The table below shows the uncorrected critical p-values and z-scores for different confidence levels. 
+
+| z-score (Standard Deviations) | p-value (Probability) | Confidence level |
+|-------------------------------|-----------------------|------------------|
+| &lt; -1.65 or &gt; +1.65            | &lt; 0.10                | 90%              |
+| &lt; -1.96 or &gt; +1.96            | &lt; 0.05                | 95%              |
+| &lt; -2.58 or &gt; +2.58            | &lt; 0.01                | 99%              |
+
+---
+# Applying Confidence Intervals
+----
+.pull-left[
+- Confidence intervals are a**n alternative approach** to the null hypothesis statistical test.
+- The approach is based on the same underlying statistical model as the null hypothesis statistical test, but instead of making a binary decision about the acceptability of `\(H_0\)`, the analyst simply calculates an interval around which it is estimated that the population value truly exists.
+]
+.pull-right[
+For 95% Confidence Interval: 
+
+95% CI = `\(\bar{x} \pm 1.96*SE_M\)` 
+
+Example from normal curve
+
+SEM = `\(\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}\)`
+
+`\(n\)` = 50, `\(\bar{x}\)` = 35 cm (13.8 in), `\(s\)` = 10 cm (3.9 in)
+
+SEM = `\(\sigma_{\overline{x}}=\frac{10}{\sqrt{50}}\)` = 1.4 cm (0.6 in)
+
+95% CI = 35 ±1.96 (1.4) = 32.3 to 37.7 cm (12.7 to 14.8 in)
+]
+
+---
+# Applying Confidence Intervals, cont.
+----
+## Can also apply to mean differences
+
+.content-box-blue[
+CI includes zero `\(\Rightarrow\)` we fail to reject `\(H_0\)`
+
+CI does not includes zero `\(\Rightarrow\)` we reject `\(H_0\)`
+]
+
+For example, if BMI mean difference = 3 kg/m2, and SE of mean differences = 2 kg/m2.
+
+**A 95% CI = 3 ±1.96 (2) = −0.9 to 6.9 kg/m2.**
+
+.content-box-red[
+
+Note the 95% CI includes zero so we do not reject the null.
+]
+
+---
+Reporting significance
+----
+
+| Usual notation | Signif. stars | English translation                                                      | The null is… |
+|----------------|---------------|--------------------------------------------------------------------------|--------------|
+| p &gt; 0.05       |               | The test wasn’t significant.                                             | Retained     |
+| p &lt; 0.05       | *             | The test was significant at α = 0.05; but not at α =.01 or α = 0.001.    | Rejected     |
+| p &lt; 0.01       | **            | The test was significant at α = 0.05 and α = 0.01; but not at α = 0.001. | Rejected     |
+| p &lt; 0.001      | ***           | The test was significant at all levels                                   | Rejected     |
+
+---
+# Running the hypothesis test in practice
+----
+## Doing it with jamovi
+
+- [Click here to see an example from Navarro and Foxcroft, 2019](https://lsj.readthedocs.io/en/latest/_pages/Ch09_HypothesisTesting_07.html#running-the-hypothesis-test-in-practice)
+
+- iskdata
+  - While in class, we test the following hypothesis
+  
+.content-box-red[
+As a group, do Kinesiology CSUN students perform differently from the entire population.fn[1]
+
+.footnote[
+[1] You should exercise caution when interpreting the results since you comparing a group of graduate students with the entire population. 
+]
+]
+
+---
+# Effect Size and Power
+----
+Cohen's d is a measure of "effect size" based on the differences between two means.
+
+It measures the relative strength of the differences between the means of two populations based on sample data. 
+
+The calculated value of effect size is then compared to Cohen’s standards of small, medium, and large effect sizes.
+
+| Size of effect | d   |
+|----------------|-----|
+| Small          | 0.2 |
+| Medium         | 0.5 |
+| Large          | 0.8 |
+
+&lt;center&gt;
+.font80[Cohen's Standard Effect Sizes]
+
+---
+# Effect Size and Power
+----
+
+(1 − β) is called the Power of the Test.
+
+The statistical power of a binary hypothesis test is the probability that the test correctly rejects the null hypothesis when a specific alternative hypothesis is true.
+
+Statistical power ranges from 0 to 1, and as the power of a test increases, the probability β of making a type II error by wrongly failing to reject the null hypothesis decreases. 
+
+Power analysis: can be used to calculate the minimum sample size required so that one can be reasonably likely to detect an effect of a given size. 
+
+Power analysis can also be used to calculate the minimum effect size that is likely to be detected in a study using a given sample size.
+
+There are several online tests, but G*Power is the best option:
+- [Download G*Power](http://bit.ly/isk-gpower)
+- [Examples using G*Power](https://stats.oarc.ucla.edu/other/gpower/)
+---
+class: sydney-sgreen
+background-image: url(assets/CSUN_LOGO_HORIZONTAL_186.svg)
+background-size: 460px
+background-position: 5% 95%
+
+# Thanks!
+
+.pull-right[.pull-down[
+
+&lt;a href="mailto:ovandef@csun.edu"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z"&gt;&lt;/path&gt;&lt;/svg&gt; ovandef@csun.edu]
+&lt;/a&gt;
+
+&lt;a href="http://twitter.com/ofurtado"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @ofurtado]
+&lt;/a&gt;
+
+&lt;a href="http://github.com/drfurtado"&gt;
+.white[&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; @drfurtado]
+&lt;/a&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="assets/remark-zoom.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

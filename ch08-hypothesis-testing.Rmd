@@ -1,0 +1,574 @@
+---
+title: "Module : Hypothesis Testing"
+subtitle: "California State University - Northridge"
+author: "Ovande Furtado, Jr., Ph.D."
+date: "March 11, 2022"
+output:
+  xaringan::moon_reader:
+    css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "assets/mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["assets/remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' # alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false # disable slide transitions by scrolling
+---
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "alphabetic",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("myBib.bib", check = FALSE)
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+```{r xaringan-editable, echo=FALSE}
+xaringanExtra::use_editable(expires = 1)
+```
+```{r style-share-again, echo=FALSE}
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+```
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons()
+```
+
+```{r}
+xaringanExtra::use_webcam()
+```
+
+```{r xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://cdn.freebiesupply.com/logos/large/2x/cal-state-northridge-matadors-logo-black-and-white.png"
+)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#0051BA", location = "top")
+```
+
+```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_freezeframe()
+```
+
+---
+# Example
+----
+
+Research question: Do Kin grad student at CSUN perform differently from the entire population when comes to reaction time? 
+
+Information to consider:
+- Dependent variable: reaction time scores.fn[1]
+ - continuous (ratio)
+- Independent variable: none
+
+Data set
+
+We will use the data set provided [here](https://drfurtado.github.io/isk-ancillary/datasets.html).
+
+.footnote[
+[1] online test - [Human Benchmark website](https://humanbenchmark.com/tests/reactiontime)
+] 
+
+---
+# Short Review
+----
+- Inferential statistics: the process of estimating population parameters based on sample statistics
+ - We rarely have access to the entire population, and even if we did, it would likely be impractical to test them all
+ - We take a representative sample and estimate the parameter of interest based on the sample statistic.
+- Parameter—a characteristic of a population 
+- Statistic—an estimate of a parameter based on sample value
+
+---
+# Short Review, cont.
+----
+
+- Sampling error—the amount of error in the estimate of a population parameter that is based on a sample statistic
+- Standard error of the mean (SEM)
+ - It is an estimate of the amount of error when a sample mean is used to estimate the population mean.
+ - The population mean cannot truly be known.
+ - We do know the sample mean and an estimate of the error we should expect.
+
+---
+# Short Review, cont.
+----
+Assume the following:
+
+- The population = 175 lb (79 kg); SD = 25 lb (11 kg).
+ - ~ 68% of all scores between 150 and 200 lb (68 and 91 kg)
+ - ~ 95% of all scores between 125 and 225 lb (57 and 102 kg)
+
+--
+
+- Imagine you have access to all scores in the population.
+- At random, pick 50 scores and calculate the mean.
+- Return those 50 scores to the pot and repeat multiple times (i.e., 8000). 
+- Create a frequency distribution of all those sample means (sampling distribution of the mean).
+
+--
+
+- Distribution would be normal (even if the samples are not normal) due to the central limit theorem.
+- The mean of the sample means is equal to the population mean.
+- The standard deviation of the sample means is called the standard error of the mean.
+
+---
+# Short Review, cont. _SE<sub>M_</sub>
+----
+
+.pull-left[
+
+```{r echo=FALSE}
+#define population mean and standard deviation
+population_mean <- 79
+population_sd <- 11
+
+#define upper and lower bound
+lower_bound <- population_mean - population_sd
+upper_bound <- population_mean + population_sd
+
+#Create a sequence of 1000 x values based on population mean and standard deviation
+x <- seq(-4, 4, length = 8000) * population_sd + population_mean
+
+#create a vector of values that shows the height of the probability distribution
+#for each value in x
+y <- dnorm(x, population_mean, population_sd)
+
+#plot normal distribution with customized x-axis labels
+plot(x,y, type = "l", lwd = 2, axes = FALSE, xlab = "Means (Kg.)", ylab = "Frequency")
+sd_axis_bounds = 5
+axis_bounds <- seq(-sd_axis_bounds * population_sd + population_mean,
+                   sd_axis_bounds * population_sd + population_mean,
+                   by = population_sd)
+axis(side = 1, at = axis_bounds, pos = 0)
+```
+]
+.pull-right[
+Again, assume that:
+- Population mean (μ) = 175 lb (79 kg)
+- Population SD (σ) = 25 lb (11 kg)
+- If we take 8000 sample means
+ - Mean of these sample means will be about 175 lb (79 kg)
+ - SD of sample means = 1.6 kg which is the standard error of mean
+]
+
+---
+# Short Review, cont. _SE<sub>M_</sub>
+----
+- We cannot sample the population multiple times, only once.
+- The solution is to estimate the _SE<sub>M_</sub>, and
+
+$$\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$$
+- Use a Confidence Interval (CI) combined with a certain Level of Confidence (LOC)
+ - CI: the range of values associated with a level of confidence
+ - LOC: % that establishes the probability that a statement is correct 
+
+---
+# Statistical Hypothesis Testing
+----
+.content-box-blue[
+Statistical hypothesis testing—create two mutually exclusive and exhaustive mathematical statements about the outcome of the analysis
+]
+.pull-left[
+- Statistical hypotheses:
+ - $H_0$ - the null hypothesis
+ - $H_a$ — the alternate hypothesis
+ - Mutually exclusive — only one of the two can be true
+ - Exhaustive — no other option can exist
+]
+.pull-right[
+We hypothesize that males and females differ on reaction time scores.
+
+When $H_a$ is a non-directional hypothesis 
+
+$$H_0: \mu _m = \mu _f \mbox{ vs. } H_1: \bar{x} _m \ne \bar{x} _f $$
+Whem $H_1$ is a directional hypothesis 
+
+$$H_0: \mu _m \leq \mu _f \mbox{ vs. } H_1: \bar{x} _m > \bar{x} _f$$
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- The interest is typically on $H_a$, but the $H_0$ is the one being tested; .font140[***always!!!***]
+ - We either **reject** or **fail to reject**.fn[1] $H_0$
+
+- Recall the idea of the sampling distribution of the mean. Now extend this idea to mean differences. 
+ - Assume we have the reaction time scores of all males and females. Also assume that the $H_0$ is TRUE.
+ - Take ONE sample of males and females and calculate the mean difference
+  - plot the value in a distribution (sample mean differences)
+  - now continue doing this for until you collected 10.000 sample mean difference scores.
+
+.footnote[
+[1] We never "**accept** $H_0$", since the actual state of the $H_O$ is never known.
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- If $H_0$ is true, then the mean difference ought to be ~0, but due to sampling error, the mean difference is unlikely to be exactly 0. 
+- Repeat over and over to create a sampling distribution of mean differences.
+- The **mean of the mean differences** should be zero (since $H_0$ is true).
+- The standard deviation of the distribution of mean differences is called the **standard error of mean differences**.
+
+.content-box-red[
+WAIT!!! I do not have access to the entire population...
+]
+.content-box-blue[
+TRUE, see next slide....
+]
+
+---
+# Statistical Hypothesis Testing, cont.
+----
+- Indeed, we do not have access to the entire population
+- You take one sample from each group, calculate the mean difference, **and estimate the probability (_p_) that you could have gotten a mean difference this big or bigger if $H_0$ is true.**
+
+.content-box-red[
+- _p_ (data│ $H_0$ ) == probability of the data, given $H_0$.
+- If the _p_-value is small, we get suspicious about the truth of the null hypothesis. If the _p_-value is small enough, we get so suspicious that we reject the null hypothesis and accept the alternate hypothesis.
+- How small is small? We set the criteria for small by setting $\alpha$. The typical $\alpha$ is 0.05. This is equivalent to a 95% level of confidence (95% LOC). 
+]
+
+---
+# Type I and Type II Error
+----
+- Decision about $H_0$ based on probabilities; may be wrong
+- $\alpha$ $\Rightarrow$ probability of committing a type I error (set by researcher)
+- $\beta$ $\Rightarrow$ probability of committing a type II error
+- Power $\Rightarrow$ the probability of rejecting $H_0$ when $H_0$ is false
+ - Power is equal to 1 − $\beta$.
+ - Power is increased by decreasing noise in the data and increasing the sample size.
+
+| | $H_0$ True | $H_0$ false|
+|--|--|--|
+|Fail to reject|Correct decision|Type II error ( $\beta$ )|
+|Reject $H_0$ | Type I error ( $\alpha$ ) |Correct decision|
+
+---
+# Still, a theoretical example
+----
+.pull-left[
+.font80[- Center - sampling distribution of $\bar{x}$ ( $H_0: \mu = 100$ )
+ - This is the value being tested
+- Distributions on either side - distributions that would be **true** if $H_0$ is **false** (alternative hypothesis).fn[1]
+- To test a hypothesis, we take a sample from the population and determine if it could have come from the hypothesized distribution with an acceptable level of significance ( $\alpha$ ).fn[2] value - shaded areas in each tail of the $H_0$
+- If the sample mean marked as $\bar{x_1}$ is in the tail of the distribution of $H_0$, we conclude that the probability that it could have come from the $H_0$ distribution is less than alpha - ***we reject $H_0$***
+]
+]
+.pull-right[
+<img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b">
+.font80[Figure representing a sampling distribution of $\bar{x}$ ( $H_0: \mu = 100$ ) and two alternative distributions that would be true if $H_0$ is false..fn[3]
+]
+]
+
+.footnote[
+[1]. We do not know which is true, and will never know. There are, in fact, an infinite number of distributions from which the data could have been drawn if Ha is true, but only two of them are on the illustration representing all of the others.
+
+[2]. Each area is actually α/2 because the distribution is symmetrical and the alternative hypothesis allows for the possibility for the value to be either greater than or less than the hypothesized value--called a two-tailed test). 
+
+[3]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# Still, a theoretical example
+----
+.pull-left[
+.font80[- The truth may be that this $\bar{x_1}$ did come from the $H_0$ distribution, but from out in the tail. If this is so, then we have falsely rejected a true null hypothesis and have made a Type I error. 
+- What statistics has done is provide an estimate about what we know, and what we control, and that is the probability of us being wrong, α.
+- We can also see in the figure that the sample mean could be really from an $H_a$ distribution, but within the boundary set by the alpha level. 
+- Such a case is marked as $\bar{x_2}$. There is a probability that $\bar{x_2}$ actually came from $H_a$ but shows up in the range of $H_0$ between the two tails. This probability is the $\beta$ error, the probability of **accepting a false null.**
+]
+]
+.pull-right[
+<img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b">
+.font80[Figure representing a sampling distribution of $\bar{x}$ ( $H_0: \mu = 100$ ) and two alternative distributions that would be true if $H_0$ is false..fn[1]
+.content-box-red[
+We will not reject a null hypothesis unless there is a greater than 90, or 95, or even 99 percent probability that the null is false.]
+]
+]
+
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+]
+
+???
+Our problem is that we can only set the alpha error because there are an infinite number of alternative distributions from which the mean could have come that are not equal to H0. As a result, the statistician places the burden of proof on the alternative hypothesis. That is, we will not reject a null hypothesis unless there is a greater than 90, or 95, or even 99 percent probability that the null is false: the burden of proof lies with the alternative hypothesis. This is why we called this the tyranny of the status quo earlier.
+
+---
+# Finally, an example!
+----
+.pull-left[
+.font80[
+Suppose the null hypothesis, $H_0$, is: Frank's rock climbing equipment is safe..fn[1]
+- Type I error: Frank thinks that his rock climbing equipment may not be safe when, in fact, it really is safe.
+- Type II error: Frank thinks that his rock climbing equipment may be safe when, in fact, it is not safe.
+- Notice that, in this case, the error with the greater consequence is the Type II error. (If Frank thinks his rock climbing equipment is safe, he will go ahead and use it.)
+- This is a situation described as "accepting a false null".
+]
+]
+.pull-right[
+<img src="https://openstax.org/apps/archive/20220118.185250/resources/f6a27ff795683f94ef6482a53bd7c056345add8b">
+
+]
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# Overview
+----
+
+- Set α, say at .05 (95% LOC).
+ - Accept a 5% risk of making a type I error, if $H_0$ is true
+- Perform analyses and calculate _p_.
+ - _p_ $\Rightarrow$ probability of the getting data that you did, if $H_0$ is true 
+ - p (data │ $H_0$)
+- If p ≤ $\alpha$, reject $H_0$.
+- If we reject $H_0$, **we say the result is statistically significant.**
+ - Not necessarily important or meaningful.fn[1]
+ 
+.footnote[
+[1] Not all significant tests are meaningful - We will address this soon.
+]
+
+---
+# Two ore more pulations
+----
+
+.pull-left[
+<img height="500px" src="https://openstax.org/apps/archive/20220118.185250/resources/909bc0c17c17166676fde5a8b1402f46f72982e3">
+]
+.pull-left[
+- Previous example was for ONE sample
+- Do these two samples come from the same population distribution?
+- The $H_0$ being tested now is mean differences
+
+$$H_0: \mu _1 - \mu _2 = 0 \mbox{ vs. } \mu _1 - \mu _2 \ne 0 $$
+]
+
+???
+Pictured are two distributions of data, X1 and X2, with unknown means and standard deviations. The second panel shows the sampling distribution of the newly created random variable (𝑋−1−𝑋−2). 
+
+This distribution is the theoretical distribution of many sample means from population 1 minus sample means from population 2. The Central Limit Theorem tells us that this theoretical sampling distribution of differences in sample means is normally distributed, regardless of the distribution of the actual population data shown in the top panel. 
+
+Because the sampling distribution is normally distributed, we can develop a standardizing formula and calculate probabilities from the standard normal distribution in the bottom panel, the Z distribution.
+
+]
+
+.footnote[
+[1]. 9.2 Outcomes and the Type I and Type II Errors - Introductory Business Statistics | OpenStax. (2022, February 28). Retrieved from https://openstax.org/books/introductory-business-statistics/pages/9-2-outcomes-and-the-type-i-and-type-ii-errors
+]
+
+---
+# One and Two-tailed tests
+----
+.pull-left[
+**Two-tailed test:** We state $H_0$ such that difference between means = 0. Or that the $\mu_1$ is equal to the $\mu_2$. 
+ - $H_0: \mu_1 - \mu_2 = 0$ vs. $H_a: \bar{x} _1 - \bar{x} _2 \ne 0$
+ - or $H_0: \mu_1 = \mu_2$ vs. $H_a: \bar{x} _1 \ne \bar{x} _2$
+ - Half of rejection area divided between the two tails of the sampling distribution
+]
+.pull-right[
+```{r echo=FALSE}
+library(nhstplot)
+
+#Plotting a one-tailed test using the "tails" parameter.
+plotztest(z = 1.645, tails = "one")
+```
+]
+
+---
+# One and Two-tailed tests
+----
+.pull-left[
+- **One-tailed test:** We hypothesize that one condition (or group mean) is larger than another.
+  - $H_0: \mu_1 \leq \mu_2$ vs. $H_a: \bar{x} _1 > \bar{x} _2$
+  - All rejection area in one tail of the sampling distribution
+]
+.pull-right[
+```{r echo=FALSE}
+library(nhstplot)
+
+#Plotting a one-tailed test using the "tails" parameter.
+plotztest(z = 1.96, tails = "two")
+```
+]
+
+---
+# Confidence Levels
+----
+The table below shows the uncorrected critical p-values and z-scores for different confidence levels. 
+
+| z-score (Standard Deviations) | p-value (Probability) | Confidence level |
+|-------------------------------|-----------------------|------------------|
+| < -1.65 or > +1.65            | < 0.10                | 90%              |
+| < -1.96 or > +1.96            | < 0.05                | 95%              |
+| < -2.58 or > +2.58            | < 0.01                | 99%              |
+
+---
+# Applying Confidence Intervals
+----
+.pull-left[
+- Confidence intervals are a**n alternative approach** to the null hypothesis statistical test.
+- The approach is based on the same underlying statistical model as the null hypothesis statistical test, but instead of making a binary decision about the acceptability of $H_0$, the analyst simply calculates an interval around which it is estimated that the population value truly exists.
+]
+.pull-right[
+For 95% Confidence Interval: 
+
+95% CI = $\bar{x} \pm 1.96*SE_M$ 
+
+Example from normal curve
+
+SEM = $\sigma_{\overline{x}}=\frac{s}{\sqrt{n}}$
+
+$n$ = 50, $\bar{x}$ = 35 cm (13.8 in), $s$ = 10 cm (3.9 in)
+
+SEM = $\sigma_{\overline{x}}=\frac{10}{\sqrt{50}}$ = 1.4 cm (0.6 in)
+
+95% CI = 35 ±1.96 (1.4) = 32.3 to 37.7 cm (12.7 to 14.8 in)
+]
+
+---
+# Applying Confidence Intervals, cont.
+----
+## Can also apply to mean differences
+
+.content-box-blue[
+CI includes zero $\Rightarrow$ we fail to reject $H_0$
+
+CI does not includes zero $\Rightarrow$ we reject $H_0$
+]
+
+For example, if BMI mean difference = 3 kg/m2, and SE of mean differences = 2 kg/m2.
+
+**A 95% CI = 3 ±1.96 (2) = −0.9 to 6.9 kg/m2.**
+
+.content-box-red[
+
+Note the 95% CI includes zero so we do not reject the null.
+]
+
+---
+Reporting significance
+----
+
+| Usual notation | Signif. stars | English translation                                                      | The null is… |
+|----------------|---------------|--------------------------------------------------------------------------|--------------|
+| p > 0.05       |               | The test wasn’t significant.                                             | Retained     |
+| p < 0.05       | *             | The test was significant at α = 0.05; but not at α =.01 or α = 0.001.    | Rejected     |
+| p < 0.01       | **            | The test was significant at α = 0.05 and α = 0.01; but not at α = 0.001. | Rejected     |
+| p < 0.001      | ***           | The test was significant at all levels                                   | Rejected     |
+
+---
+# Running the hypothesis test in practice
+----
+## Doing it with jamovi
+
+- [Click here to see an example from Navarro and Foxcroft, 2019](https://lsj.readthedocs.io/en/latest/_pages/Ch09_HypothesisTesting_07.html#running-the-hypothesis-test-in-practice)
+
+- iskdata
+  - While in class, we test the following hypothesis
+  
+.content-box-red[
+As a group, do Kinesiology CSUN students perform differently from the entire population.fn[1]
+
+.footnote[
+[1] You should exercise caution when interpreting the results since you comparing a group of graduate students with the entire population. 
+]
+]
+
+---
+# Effect Size and Power
+----
+Cohen's d is a measure of "effect size" based on the differences between two means.
+
+It measures the relative strength of the differences between the means of two populations based on sample data. 
+
+The calculated value of effect size is then compared to Cohen’s standards of small, medium, and large effect sizes.
+
+| Size of effect | d   |
+|----------------|-----|
+| Small          | 0.2 |
+| Medium         | 0.5 |
+| Large          | 0.8 |
+
+<center>
+.font80[Cohen's Standard Effect Sizes]
+
+---
+# Effect Size and Power
+----
+
+(1 − β) is called the Power of the Test.
+
+The statistical power of a binary hypothesis test is the probability that the test correctly rejects the null hypothesis when a specific alternative hypothesis is true.
+
+Statistical power ranges from 0 to 1, and as the power of a test increases, the probability β of making a type II error by wrongly failing to reject the null hypothesis decreases. 
+
+Power analysis: can be used to calculate the minimum sample size required so that one can be reasonably likely to detect an effect of a given size. 
+
+Power analysis can also be used to calculate the minimum effect size that is likely to be detected in a study using a given sample size.
+
+There are several online tests, but G*Power is the best option:
+- [Download G*Power](http://bit.ly/isk-gpower)
+- [Examples using G*Power](https://stats.oarc.ucla.edu/other/gpower/)
+---
+class: sydney-sgreen
+background-image: url(assets/CSUN_LOGO_HORIZONTAL_186.svg)
+background-size: 460px
+background-position: 5% 95%
+
+# Thanks!
+
+.pull-right[.pull-down[
+
+<a href="mailto:ovandef@csun.edu">
+.white[`r icons::fontawesome("paper-plane")` ovandef@csun.edu]
+</a>
+
+<a href="http://twitter.com/ofurtado">
+.white[`r icons::fontawesome("twitter")` @ofurtado]
+</a>
+
+<a href="http://github.com/drfurtado">
+.white[`r icons::fontawesome("github")` @drfurtado]
+</a>
+
+<br><br><br>
+
+]]
