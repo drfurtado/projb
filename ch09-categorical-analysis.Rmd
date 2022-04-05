@@ -1,0 +1,320 @@
+---
+title: "Categorical Data Analysis"
+subtitle: "California State University - Northridge"
+author: "Ovande Furtado, Jr., Ph.D."
+date: "April 03, 2022"
+output:
+  xaringan::moon_reader:
+    css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: true # show a title slide with YAML information
+    includes:
+      in_header: "assets/mathjax-equation-numbers.html"
+    nature:
+      beforeInit: ["assets/remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9' # alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false # disable slide transitions by scrolling
+---
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "alphabetic",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+myBib <- ReadBib("myBib.bib", check = FALSE)
+```
+
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+```{r xaringan-editable, echo=FALSE}
+xaringanExtra::use_editable(expires = 1)
+```
+```{r style-share-again, echo=FALSE}
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+```
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons()
+```
+
+```{r}
+xaringanExtra::use_webcam()
+```
+
+```{r xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE, auto_search = FALSE)
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://cdn.freebiesupply.com/logos/large/2x/cal-state-northridge-matadors-logo-black-and-white.png"
+)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#0051BA", location = "top")
+```
+
+```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_freezeframe()
+```
+
+---
+# The χ² (chi-square) goodness-of-fit test
+
+- It tests whether an observed frequency distribution of a nominal variable matches an expected frequency distribution.
+- For example: a group of casual runners have been training for the LA Marathon and have their motivation assessed throughout to see whether motivation has improved, stayed the same or worsened.
+
+.content-box-grey[
+A goodness-of-fit test could be used to determine whether the numbers in each category - improved, remained the same, or worsened. 
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test.fn[1]
+<br>
+**What it is?**
+.content-box-blue[
+It is a statistical hypothesis test used to determine whether a variable is likely to come from a specified distribution or not. It is often used to evaluate whether a sample data is representative of the population the sample was taken from.
+]
+
+**When can it be used?**
+.content-box-blue[
+When testing a single dependent categorical variable and values are expressed in counts.
+]
+
+**Variables**
+.content-box-blue[
+Dependent: 1 categorical with _J_ independent groups<br>
+Independent: none
+]
+.footnote[
+[1] [Click here](https://statkat.com/stattest.php?t=3&t2=4) to compare with Chi-square test for relationship between 2 categorical variables.
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+<br>
+**For example:**
+
+- a group of casual runners have been training for the LA Marathon and have their motivation assessed throughout to see whether motivation has improved, stayed the same or worsened.
+
+.content-box-grey[
+A χ² (chi-square) goodness-of-fit test could be used to determine whether the numbers in each category - improved, remained the same, or worsened. 
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+<br>
+**Hypotheses**
+.content-box-blue[
+***Null***<br>
+$H_0$: the population proportions in each of the _J_ conditions are $p_1$, $p_2$, $p_3$ ,... $p_j$ <br>
+or stated differently,<br>
+$H_0$: $p_1$ = $p_2$ = $p_3$ ,... $p_j$
+]
+.content-box-grey[
+***Alternative***<br>
+$H_a$: at least one $p_j$ not equal
+]
+.content-box-red[
+**Note**: When not testing for equal proportions, use the following:<br>
+$H_0$: $p_1$ = .3; $p_2$ = .35; $p_3$ = .35
+<br>
+$H_a$: at least one $p_j$ not equal to expected value
+]
+
+
+.footnote[
+[1] [JMP - Statistical Discovery](https://bit.ly/3DHe2ik)
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+
+.pull-left[
+**Assumptions**
+- Sample size is large enough. All _J_ expected cell counts must be 5 or more
+- Sample is a simple random sample - observations are independent of one another
+]
+.pull-right[
+
+**Test Statistics**
+
+$$
+\chi^2 = \sum\left[\frac{(f_o - f_e)^2}{f_e}\right]
+$$
+with $k - 1$ degrees of freedom, where:
+- $k$ is the number of categories.
+- $f_o$ is an observed frequency in a particular category.
+- $f_e$ is an expected frequency in a particular category.
+
+]
+---
+# The χ² (chi-square) goodness-of-fit test
+<br>
+
+**Sampling Distribution**
+
+.pull-left[
+<img src="https://statkat.com/images/chi-squared-distribution.png">
+
+.font80[
+Sampling distribution of $X^2$ if $H_0$ were true.fn[1]
+]
+]
+.pull-right[
+- Small scores of $X^2$ tend to occur most to the time
+- Large scores of $X^2$ tend to occur less often
+- So, if we find a $X^2$ value that is large in our sample and the $H_0$ is TRUE
+- Then, we found evidence  against the $H_0$
+]
+.footnote[
+[1] www.statkat.com 
+]
+
+---
+## Practice
+- First, read the excerpt below
+- Then, find the critical $X^2$ value.fn[1] associated with the DF, N, and $\alpha$ = 0.05
+- Then, confirm if the hypothesis test statement is correct by comparing the observed $X^2$ value with the $X^2$ critical value
+- Then, using the **Interactive Graphs** for the Chi-square distribution found in StatsKat.fn[2], find:
+  - the p-value associated with a $X^2$ = 3.97
+ 
+
+.content-box-red[
+.font80[
+The observed quarterly birth rate distribution of the participants is displayed in Table 1. There was no statistically significant difference between the observed and expected distribution values, $X^2$ = (3, _N_ = 150) = 3.97, p = [omitted]. While the results do not illustrate a statistically significant variation from the expected random distribution of births, it is interesting to note that the final three quarters were evenly distributed while the first quarter contained the highest number of participants.fn[3]
+]
+]
+.footnote[
+[1] https://bit.ly/3Kc5NNO
+
+[2] https://statkat.com/interactive-graphs.php
+
+[3] Beals, T. C., Furtado, O., Jr., & Fontana, F. E. (2017). Relative Age Effect and Academic Timing in American Junior College Baseball. Perceptual and Motor Skills. https://doi.org/10.1177/0031512517724260
+]
+
+
+???
+When alpha = 0.05 and df = 3, the critical X2 value is equal to X2* = 7.815. Reject the null hypothesis if your observed X2 value is equal to or larger than 7.815. 
+
+
+---
+## Doing it in jamovi
+
+- [Data set up](https://bit.ly/3DK8BiH) 
+- [Data file](https://bit.ly/3KgJczH) 
+
+**Phrasing results**
+.content-box-red[
+Of the 200 participants in the experiment, 64 selected hearts for their first choice, 51 selected diamonds, 50 selected spades, and 35 selected clubs. A χ²-goodness-of-fit test was conducted to test whether the choice probabilities were identical for all four suits. The results were significant (χ²(3) = 8.44, p < 0.05), suggesting that people did not select suits purely at random.
+]
+
+---
+# The χ² (chi-square) Test of Independence (Association)
+<br>
+**What it is?**
+.content-box-blue[
+The Chi-square test of independence is a statistical hypothesis test used to determine whether two categorical or nominal variables are likely to be related or not.
+]
+
+**When can it be used?**
+.content-box-blue[
+You can use the test when you have counts of values for two categorical variables.
+]
+
+**Variables**
+.content-box-blue[
+Dependent: One categorical with J independent groups (J ⩾ 2)<br>
+Independent: One categorical with I independent groups (I ⩾ 2)
+]
+.footnote[
+[1] [Click here](https://statkat.com/stattest.php?t=3&t2=4) to compare with Chi-square test for relationship between 2 categorical variables.
+]
+
+---
+# The χ² (chi-square) Test of Independence (Association)
+<br>
+
+- Tutorial from [StatsKat](https://bit.ly/3j6ebm8)
+- [Comparing](https://statkat.com/stattest.php?t=4&t2=3) Goodness of fit with the Test of Association
+
+---
+## Doing it
+
+- [Data set up](https://lsj.readthedocs.io/en/latest/Ch10/Ch10_ChiSquare_2.html#doing-the-test-in-jamovi)
+- [File can be found here](https://bit.ly/3j9GrEo)
+
+**Phrasing Results**
+.content-box-red[
+Pearson’s χ² revealed a significant association between species and choice (χ²(2) = 10.7, p < 0.01). Robots appeared to be more likely to say that they prefer flowers, but the humans were more likely to say they prefer data.
+]
+
+---
+# The χ² (chi-square) -  more
+<br>
+**Effect Size**
+
+[Best option is Cramer's V](https://bit.ly/3uUK0E1)
+
+**The Fisher exact test**
+
+[Do it if cell counts are too small - less than 5](https://bit.ly/38kAdiO)
+
+**McNemar's test**
+
+[More information here](https://statkat.com/stat-tests/mcnemars-test.php)
+
+- [Doing it in jamovi](https://bit.ly/3ucYiAG)
+
+---
+class: sydney-sgreen
+background-image: url(assets/CSUN_LOGO_HORIZONTAL_186.svg)
+background-size: 460px
+background-position: 5% 95%
+
+# Thanks!
+
+.pull-right[.pull-down[
+
+<a href="mailto:ovandef@csun.edu">
+.white[`r icons::fontawesome("paper-plane")` ovandef@csun.edu]
+</a>
+
+<a href="http://twitter.com/ofurtado">
+.white[`r icons::fontawesome("twitter")` @ofurtado]
+</a>
+
+<a href="http://github.com/drfurtado">
+.white[`r icons::fontawesome("github")` @drfurtado]
+</a>
+
+<br><br><br>
+
+]]

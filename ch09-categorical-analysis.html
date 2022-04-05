@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Categorical Data Analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ovande Furtado, Jr., Ph.D." />
+    <meta name="date" content="2022-04-03" />
+    <script src="ch09-categorical-analysis_files/header-attrs-2.13/header-attrs.js"></script>
+    <link href="ch09-categorical-analysis_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="ch09-categorical-analysis_files/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="ch09-categorical-analysis_files/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="ch09-categorical-analysis_files/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <link href="ch09-categorical-analysis_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/tile-view-0.2.6/tile-view.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x2d4f5ea100f4161951d04735e66a8b6","expires":1}</script>
+    <script src="ch09-categorical-analysis_files/himalaya-1.1.0/himalaya.js"></script>
+    <link href="ch09-categorical-analysis_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/editable-0.2.6/editable.js"></script>
+    <link href="ch09-categorical-analysis_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/panelset-0.2.6/panelset.js"></script>
+    <link href="ch09-categorical-analysis_files/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script src="ch09-categorical-analysis_files/mark.js-8.11.1/mark.min.js"></script>
+    <link href="ch09-categorical-analysis_files/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":false}) })</script>
+    <script src="ch09-categorical-analysis_files/fabric-4.3.1/fabric.min.js"></script>
+    <link href="ch09-categorical-analysis_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="ch09-categorical-analysis_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="ch09-categorical-analysis_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="ch09-categorical-analysis_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="ch09-categorical-analysis_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
+    <script src="ch09-categorical-analysis_files/freezeframe-5.0.2/freezeframe.min.js"></script>
+    <script src="ch09-categorical-analysis_files/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/sydney.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Categorical Data Analysis
+## California State University - Northridge
+### Ovande Furtado, Jr., Ph.D.
+### April 03, 2022
+
+---
+
+
+
+
+
+
+
+
+
+<style>.shareagain-bar {
+--shareagain-foreground: rgb(255, 255, 255);
+--shareagain-background: rgba(0, 0, 0, 0.5);
+--shareagain-facebook: none;
+--shareagain-pinterest: none;
+--shareagain-pocket: none;
+--shareagain-reddit: none;
+}</style>
+
+
+
+
+
+```r
+xaringanExtra::use_webcam()
+```
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(https://cdn.freebiesupply.com/logos/large/2x/cal-state-northridge-matadors-logo-black-and-white.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #0051BA;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+
+---
+# The χ² (chi-square) goodness-of-fit test
+
+- It tests whether an observed frequency distribution of a nominal variable matches an expected frequency distribution.
+- For example: a group of casual runners have been training for the LA Marathon and have their motivation assessed throughout to see whether motivation has improved, stayed the same or worsened.
+
+.content-box-grey[
+A goodness-of-fit test could be used to determine whether the numbers in each category - improved, remained the same, or worsened. 
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test.fn[1]
+&lt;br&gt;
+**What it is?**
+.content-box-blue[
+It is a statistical hypothesis test used to determine whether a variable is likely to come from a specified distribution or not. It is often used to evaluate whether a sample data is representative of the population the sample was taken from.
+]
+
+**When can it be used?**
+.content-box-blue[
+When testing a single dependent categorical variable and values are expressed in counts.
+]
+
+**Variables**
+.content-box-blue[
+Dependent: 1 categorical with _J_ independent groups&lt;br&gt;
+Independent: none
+]
+.footnote[
+[1] [Click here](https://statkat.com/stattest.php?t=3&amp;t2=4) to compare with Chi-square test for relationship between 2 categorical variables.
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+&lt;br&gt;
+**For example:**
+
+- a group of casual runners have been training for the LA Marathon and have their motivation assessed throughout to see whether motivation has improved, stayed the same or worsened.
+
+.content-box-grey[
+A χ² (chi-square) goodness-of-fit test could be used to determine whether the numbers in each category - improved, remained the same, or worsened. 
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+&lt;br&gt;
+**Hypotheses**
+.content-box-blue[
+***Null***&lt;br&gt;
+`\(H_0\)`: the population proportions in each of the _J_ conditions are `\(p_1\)`, `\(p_2\)`, `\(p_3\)` ,... `\(p_j\)` &lt;br&gt;
+or stated differently,&lt;br&gt;
+`\(H_0\)`: `\(p_1\)` = `\(p_2\)` = `\(p_3\)` ,... `\(p_j\)`
+]
+.content-box-grey[
+***Alternative***&lt;br&gt;
+`\(H_a\)`: at least one `\(p_j\)` not equal
+]
+.content-box-red[
+**Note**: When not testing for equal proportions, use the following:&lt;br&gt;
+`\(H_0\)`: `\(p_1\)` = .3; `\(p_2\)` = .35; `\(p_3\)` = .35
+&lt;br&gt;
+`\(H_a\)`: at least one `\(p_j\)` not equal to expected value
+]
+
+
+.footnote[
+[1] [JMP - Statistical Discovery](https://bit.ly/3DHe2ik)
+]
+
+---
+# The χ² (chi-square) goodness-of-fit test
+
+.pull-left[
+**Assumptions**
+- Sample size is large enough. All _J_ expected cell counts must be 5 or more
+- Sample is a simple random sample - observations are independent of one another
+]
+.pull-right[
+
+**Test Statistics**
+
+$$
+\chi^2 = \sum\left[\frac{(f_o - f_e)^2}{f_e}\right]
+$$
+with `\(k - 1\)` degrees of freedom, where:
+- `\(k\)` is the number of categories.
+- `\(f_o\)` is an observed frequency in a particular category.
+- `\(f_e\)` is an expected frequency in a particular category.
+
+]
+---
+# The χ² (chi-square) goodness-of-fit test
+&lt;br&gt;
+
+**Sampling Distribution**
+
+.pull-left[
+&lt;img src="https://statkat.com/images/chi-squared-distribution.png"&gt;
+
+.font80[
+Sampling distribution of `\(X^2\)` if `\(H_0\)` were true.fn[1]
+]
+]
+.pull-right[
+- Small scores of `\(X^2\)` tend to occur most to the time
+- Large scores of `\(X^2\)` tend to occur less often
+- So, if we find a `\(X^2\)` value that is large in our sample and the `\(H_0\)` is TRUE
+- Then, we found evidence  against the `\(H_0\)`
+]
+.footnote[
+[1] www.statkat.com 
+]
+
+---
+## Practice
+- First, read the excerpt below
+- Then, find the critical `\(X^2\)` value.fn[1] associated with the DF, N, and `\(\alpha\)` = 0.05
+- Then, confirm if the hypothesis test statement is correct by comparing the observed `\(X^2\)` value with the `\(X^2\)` critical value
+- Then, using the **Interactive Graphs** for the Chi-square distribution found in StatsKat.fn[2], find:
+  - the p-value associated with a `\(X^2\)` = 3.97
+ 
+
+.content-box-red[
+.font80[
+The observed quarterly birth rate distribution of the participants is displayed in Table 1. There was no statistically significant difference between the observed and expected distribution values, `\(X^2\)` = (3, _N_ = 150) = 3.97, p = [omitted]. While the results do not illustrate a statistically significant variation from the expected random distribution of births, it is interesting to note that the final three quarters were evenly distributed while the first quarter contained the highest number of participants.fn[3]
+]
+]
+.footnote[
+[1] https://bit.ly/3Kc5NNO
+
+[2] https://statkat.com/interactive-graphs.php
+
+[3] Beals, T. C., Furtado, O., Jr., &amp; Fontana, F. E. (2017). Relative Age Effect and Academic Timing in American Junior College Baseball. Perceptual and Motor Skills. https://doi.org/10.1177/0031512517724260
+]
+
+
+???
+When alpha = 0.05 and df = 3, the critical X2 value is equal to X2* = 7.815. Reject the null hypothesis if your observed X2 value is equal to or larger than 7.815. 
+
+
+---
+## Doing it in jamovi
+
+- [Data set up](https://bit.ly/3DK8BiH) 
+- [Data file](https://bit.ly/3KgJczH) 
+
+**Phrasing results**
+.content-box-red[
+Of the 200 participants in the experiment, 64 selected hearts for their first choice, 51 selected diamonds, 50 selected spades, and 35 selected clubs. A χ²-goodness-of-fit test was conducted to test whether the choice probabilities were identical for all four suits. The results were significant (χ²(3) = 8.44, p &lt; 0.05), suggesting that people did not select suits purely at random.
+]
+
+---
+# The χ² (chi-square) Test of Independence (Association)
+&lt;br&gt;
+**What it is?**
+.content-box-blue[
+The Chi-square test of independence is a statistical hypothesis test used to determine whether two categorical or nominal variables are likely to be related or not.
+]
+
+**When can it be used?**
+.content-box-blue[
+You can use the test when you have counts of values for two categorical variables.
+]
+
+**Variables**
+.content-box-blue[
+Dependent: One categorical with J independent groups (J ⩾ 2)&lt;br&gt;
+Independent: One categorical with I independent groups (I ⩾ 2)
+]
+.footnote[
+[1] [Click here](https://statkat.com/stattest.php?t=3&amp;t2=4) to compare with Chi-square test for relationship between 2 categorical variables.
+]
+
+---
+# The χ² (chi-square) Test of Independence (Association)
+&lt;br&gt;
+
+- Tutorial from [StatsKat](https://bit.ly/3j6ebm8)
+- [Comparing](https://statkat.com/stattest.php?t=4&amp;t2=3) Goodness of fit with the Test of Association
+
+---
+## Doing it
+
+- [Data set up](https://lsj.readthedocs.io/en/latest/Ch10/Ch10_ChiSquare_2.html#doing-the-test-in-jamovi)
+- [File can be found here](https://bit.ly/3j9GrEo)
+
+**Phrasing Results**
+.content-box-red[
+Pearson’s χ² revealed a significant association between species and choice (χ²(2) = 10.7, p &lt; 0.01). Robots appeared to be more likely to say that they prefer flowers, but the humans were more likely to say they prefer data.
+]
+
+---
+# The χ² (chi-square) -  more
+&lt;br&gt;
+**Effect Size**
+
+[Best option is Cramer's V](https://bit.ly/3uUK0E1)
+
+**The Fisher exact test**
+
+[Do it if cell counts are too small - less than 5](https://bit.ly/38kAdiO)
+
+**McNemar's test**
+
+[More information here](https://statkat.com/stat-tests/mcnemars-test.php)
+
+- [Doing it in jamovi](https://bit.ly/3ucYiAG)
+
+---
+class: sydney-sgreen
+background-image: url(assets/CSUN_LOGO_HORIZONTAL_186.svg)
+background-size: 460px
+background-position: 5% 95%
+
+# Thanks!
+
+.pull-right[.pull-down[
+
+&lt;a href="mailto:ovandef@csun.edu"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z"&gt;&lt;/path&gt;&lt;/svg&gt; ovandef@csun.edu]
+&lt;/a&gt;
+
+&lt;a href="http://twitter.com/ofurtado"&gt;
+.white[&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; @ofurtado]
+&lt;/a&gt;
+
+&lt;a href="http://github.com/drfurtado"&gt;
+.white[&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; @drfurtado]
+&lt;/a&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="assets/remark-zoom.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
