@@ -22,3 +22,18 @@ icons::download_fontawesome()
 ```
 
 For further customisation you might consider the [xaringanExtra](https://github.com/gadenbuie/xaringanExtra) package.
+
+Other notes
+## Convert to other file formats
+
+install.packages("remotes")
+install.packages("pdftools")
+
+# load the library
+library(xaringanBuilder)
+# load the library
+library(pdftools)
+
+# convert files to desired file formats
+build_pptx("slides/final-project-presentation.Rmd") # _html, _gif, _mp4, _png
+
