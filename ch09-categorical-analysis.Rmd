@@ -120,17 +120,6 @@ Independent: none
 ---
 # The χ² (chi-square) goodness-of-fit test
 <br>
-**For example:**
-
-- a group of casual runners have been training for the LA Marathon and have their motivation assessed throughout to see whether motivation has improved, stayed the same or worsened.
-
-.content-box-grey[
-A χ² (chi-square) goodness-of-fit test could be used to determine whether the numbers in each category - improved, remained the same, or worsened. 
-]
-
----
-# The χ² (chi-square) goodness-of-fit test
-<br>
 **Hypotheses**
 .content-box-blue[
 ***Null***<br>
